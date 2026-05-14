@@ -11,10 +11,13 @@ The project is designed to be:
 
 ## Things you need
 
- - [ESP32 preferably wwith antenna support](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [91" Oled display (I2C)](https://github.com/matiassingers/awesome-readme)
- - [Rotary encoder](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
-  - [PCB](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
+ - [ESP32 preferably with antenna support](https://de.aliexpress.com/item/1005006140555903.html)
+ - [ESP8266 NodeMCU V3](https://de.aliexpress.com/item/1005006889833004.html)
+ - [0.91" Oled display (I2C)](https://de.aliexpress.com/item/1005011907100931.html)
+ - [Rotary encoder](https://no.rs-online.com/web/p/mechanical-rotary-encoders/1675389)
+ - [PCB]()
+ - [2x100k Ohm Resistors](https://www.reichelt.de/de/de/shop/produkt/widerstand_metallschicht_100_kohm_0207_0_6_w_1_-11458)
+ - [1x0.1uF capacitor](https://funduinoshop.com/bauelemente/passive-bauelemente/kondensatoren/keramikkondensator-0.1uf-104pf-50v)
 
 
 # Tools you need
