@@ -1,2 +1,0 @@
-CASE/case_model.f3d filter=lfs diff=lfs merge=lfs -text
-*.f3d filter=lfs diff=lfs merge=lfs -text
