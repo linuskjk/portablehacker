@@ -119,19 +119,7 @@ VBAT ── R1 ──+── GPIO34
 
 | Signal | ESP32 Pin |
 |---|---|
-| BAT_SENSE | GPIO34 |# Future Plans
-
-- BLE device details
-- SD card logging
-- Packet monitoring
-- RGB status LEDs
-- Better UI animations
-- Battery percentage calibration
-- Sleep mode
-- USB-C charging
-- Fully custom ESP32 PCB
-
-
+| BAT_SENSE | GPIO34 |
 
 ## Authors
 
