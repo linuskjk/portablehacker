@@ -1,6 +1,6 @@
 # Portable Hacker
 
-Portable Hacker is a handheld ESP32-based network utility device with a custom PCB, OLED display, rotary encoder navigation, battery monitoring, WiFi scanning, Bluetooth scanning, and a modular firmware UI.
+Portable Hacker is a handheld ESP32-based network utility device with a custom PCB, OLED display, rotary encoder navigation, battery monitoring, WiFi scanning, Bluetooth scanning, and a easy to adapt firmware UI.
 
 The project is designed to be:
 - portable
@@ -9,7 +9,7 @@ The project is designed to be:
 - easy to modify
 - beginner-friendly Hardware
 
-## Things you need
+# Things you need
 
  - [ESP32 preferably with antenna support](https://de.aliexpress.com/item/1005006140555903.html)
  - [ESP8266 NodeMCU V3](https://de.aliexpress.com/item/1005006889833004.html)
