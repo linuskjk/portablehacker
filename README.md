@@ -34,8 +34,12 @@ The project is designed to be:
 2. Solder all components
 3. Connect the OLED display
 4. Connect the battery
-5. Upload the firmware
-6. Power on the device# Features
+5. Upload the firmware by uploading v1.ino to the esp32 and the handshakeV2_esp8266.ino to the ESP8266 you can do both by using Arduino IDE
+6. Power on the device
+
+  
+
+# Features
 
 - ESP32 powered
 - OLED UI with menu system
