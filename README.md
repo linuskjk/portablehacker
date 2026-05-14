@@ -1,42 +1,136 @@
 # Portable Hacker
 
-A portable security testing and development platform based on ESP32/ESP8266 microcontrollers.
+Portable Hacker is a handheld ESP32-based network utility device with a custom PCB, OLED display, rotary encoder navigation, battery monitoring, WiFi scanning, Bluetooth scanning, and a modular firmware UI.
 
-## Project Structure
+The project is designed to be:
+- portable
+- modular
+- expandable
+- easy to modify
+- beginner-friendly Hardware
 
-- **CODE/** - Firmware and application code
-  - `ble_spam/` - BLE advertising spam tool
-  - `captivePortal/` - Captive portal implementation
-  - `deauth/` - WiFi deauthentication attacks
-  - `handshake_*` - WiFi handshake capture utilities
-  - `PCB/` - KiCad PCB design and libraries
+## Things you need
 
-- **CASE/** - 3D models and case design files
-  - Various format outputs (3MF, F3D, STEP, STL, USDZ, OBJ)
+ - [ESP32 preferably wwith antenna support](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+ - [91" Oled display (I2C)](https://github.com/matiassingers/awesome-readme)
+ - [Rotary encoder](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
+  - [PCB](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
 
-- **PCB/** - PCB design files and component models
 
-## Hardware
+# Tools you need
+- Soldering Iron
+- Solder wire
+- 3D-Printer
 
-- Based on ESP32 DevKit V1
-- OLED display integration
-- Various sensor and module connectors
 
-## Features
 
-- WiFi security testing tools
-- BLE scanning and exploitation
-- Handshake capture and analysis
-- Captive portal framework
 
-## Building
+# Installation
 
-Each code subdirectory contains its own build instructions. Refer to the specific README in each module for details.
+1. Assemble the PCB
+2. Solder all components
+3. Connect the OLED display
+4. Connect the battery
+5. Upload the firmware
+6. Power on the device# Features
 
-## Case Design
+- ESP32 powered
+- OLED UI with menu system
+- Rotary encoder navigation
+- Battery voltage monitoring
+- WiFi network scanner
+- Bluetooth scanner
+- Modular firmware architecture
+- Rechargeable LiPo battery support
+- Custom PCB
+- 3D printable enclosure support
 
-3D case models are provided in multiple formats for compatibility with different design and manufacturing tools.
+
+# Hardware
+
+## Required Components
+
+| Component | Description |
+|---|---|
+| ESP32 Dev Board | Preferably with external antenna support |
+| 0.91\" OLED Display | I2C SSD1306 |
+| Rotary Encoder | With push button |
+| LiPo Battery | 3.7V rechargeable |
+| TP4056 | LiPo charging module |
+| 2x 100kΩ Resistors | Battery voltage divider |
+| 0.1µF Capacitor | ADC smoothing |
+| Custom PCB | Designed in KiCad |
+
+
+
+# Battery Measurement Circuit
+
+The battery voltage is measured using a voltage divider connected to GPIO34.
+
+```text
+VBAT ── R1 ──+── GPIO34
+             |
+             +── C1 ── GND
+             |
+             R2
+             |
+            GND
+```
+## Values
+
+| Component | Value |
+|---|---|
+| R1 | 100kΩ |
+| R2 | 100kΩ |
+| C1 | 0.1µF |
+# Pin Layout
+
+## OLED Display
+
+| OLED Pin | ESP32 Pin |
+|---|---|
+| SDA | GPIO21 |
+| SCL | GPIO22 |
+| VCC | 3.3V |
+| GND | GND |
 
 ---
 
-**Note:** This is a security research and educational tool. Use responsibly and only on networks/devices you own or have permission to test.
+## Rotary Encoder
+
+| Encoder Pin | ESP32 Pin |
+|---|---|
+| A | GPIO32 |
+| B | GPIO33 |
+| SW | GPIO25 |
+| + | 3.3V |
+| GND | GND |
+
+---
+
+## Battery Monitoring
+
+| Signal | ESP32 Pin |
+|---|---|
+| BAT_SENSE | GPIO34 |# Future Plans
+
+- BLE device details
+- SD card logging
+- Packet monitoring
+- RGB status LEDs
+- Better UI animations
+- Battery percentage calibration
+- Sleep mode
+- USB-C charging
+- Fully custom ESP32 PCB
+
+
+
+## Authors
+
+- [@linuskjk](https://www.github.com/linuskjk)
+
+
+## License
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
