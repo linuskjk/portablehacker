@@ -126,6 +126,17 @@ VBAT ── R1 ──+── GPIO34
 |---|---|
 | BAT_SENSE | GPIO34 |
 
+
+# Images
+<img width="500" height="380" alt="all" src="https://github.com/user-attachments/assets/e6787641-1f35-4863-b597-963330568270" />
+<img width="800" height="500" alt="PCB_botton" src="https://github.com/user-attachments/assets/8722b195-f6f3-40ca-a0be-ca86b06d9a85" />
+<img width="800" height="500" alt="PCB_top" src="https://github.com/user-attachments/assets/f06ebb7f-a434-4ea0-8a82-d48e4f9d0af6" />
+<img width="800" height="400" alt="Case_snap_together" src="https://github.com/user-attachments/assets/849a8647-68e8-45dd-acf2-459302a06cb2" />
+
+
+
+
+
 ## Authors
 
 - [@linuskjk](https://www.github.com/linuskjk)
