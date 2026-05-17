@@ -19,7 +19,6 @@ void setup() {
 
 void loop() {
   if (Serial.available()) {
-    // Prüfe auf das PKT-Signal ohne den Puffer mit readString zu leeren
     if (Serial.peek() == 'P') {
       String cmd = Serial.readStringUntil(':');
       
@@ -48,7 +47,7 @@ void loop() {
         }
       } 
       else if (cmd == "START_CAPTURE") {
-        Serial.read(); // Den Doppelpunkt nach START_CAPTURE verschlucken
+        Serial.read(); 
         String ssid = Serial.readStringUntil('\n');
         ssid.trim();
         if(pcapFile) pcapFile.close();
@@ -65,7 +64,6 @@ void loop() {
        }
     }
     else {
-      // Alles andere (Logs) einfach verwerfen, damit der Puffer leer wird
       Serial.read();
     }
   }
