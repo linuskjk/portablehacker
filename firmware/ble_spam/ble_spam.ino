@@ -45,12 +45,11 @@ void loop() {
     
     pAdvertising->setAdvertisementData(oData);
     
-    // Reichweiten-Boost: Extrem schnelles Senden
-    pAdvertising->setMinInterval(0x20); // 20ms
-    pAdvertising->setMaxInterval(0x20); // 20ms
+    pAdvertising->setMinInterval(0x20);
+    pAdvertising->setMaxInterval(0x20);
     
     pAdvertising->start();
-    delay(100); // Länger senden erhöht die Chance, dass Geräte es auffangen
+    delay(100);
     pAdvertising->stop();
     delay(5);
   }
