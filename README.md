@@ -129,6 +129,8 @@ VBAT ── R1 ──+── GPIO34
 
 
 # Images
+<img width="1059" height="715" alt="image" src="https://github.com/user-attachments/assets/0374bb60-89d3-4ded-9852-709c38e33cfb" />
+
 <img width="500" height="380" alt="all" src="https://github.com/user-attachments/assets/e6787641-1f35-4863-b597-963330568270" />
 <img width="800" height="500" alt="PCB_botton" src="https://github.com/user-attachments/assets/8722b195-f6f3-40ca-a0be-ca86b06d9a85" />
 <img width="800" height="500" alt="PCB_top" src="https://github.com/user-attachments/assets/f06ebb7f-a434-4ea0-8a82-d48e4f9d0af6" />
