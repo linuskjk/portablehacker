@@ -19,7 +19,7 @@ Portable Hacker is a handheld ESP32-based network utility device with a custom P
  - [ESP8266 NodeMCU V3](https://de.aliexpress.com/item/1005006889833004.html)
  - [0.91" Oled display (I2C)](https://de.aliexpress.com/item/1005011907100931.html)
  - [Rotary encoder](https://no.rs-online.com/web/p/mechanical-rotary-encoders/1675389)
- - [PCB]()
+ - [PCB](pcb/final.kicad_pcb)
  - [2x100k Ohm Resistors](https://www.reichelt.de/de/de/shop/produkt/widerstand_metallschicht_100_kohm_0207_0_6_w_1_-11458)
  - [1x0.1uF capacitor](https://funduinoshop.com/bauelemente/passive-bauelemente/kondensatoren/keramikkondensator-0.1uf-104pf-50v)
 
@@ -40,6 +40,27 @@ Portable Hacker is a handheld ESP32-based network utility device with a custom P
 4. Connect the battery
 5. Upload the firmware by uploading v1.ino to the esp32 and the handshakeV2_esp8266.ino to the ESP8266 you can do both by using Arduino IDE
 6. Power on the device
+
+## Firmware dependencies
+
+### Arduino / ESP32 firmware
+
+- Adafruit GFX Library
+- Adafruit SSD1306
+- ESP32Encoder
+- BluetoothSerial, WiFi, and Wire are provided by the ESP32 Arduino core
+
+### ESP8266 helper firmware
+
+- ESP8266WiFi, user_interface.h, and the ESP8266 Arduino core
+
+### Python capture tools
+
+- Python 3.9+
+- pyserial
+- Optional: access to the serial port listed with `--port` or the `PORT` environment variable
+
+The Python capture scripts now auto-detect a connected serial port when possible, but you can still pass a port manually if you want a specific device.
 
   
 
@@ -148,3 +169,5 @@ VBAT ── R1 ──+── GPIO34
 ## License
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
+See [LICENSE](LICENSE) for the full text.

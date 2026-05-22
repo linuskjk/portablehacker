@@ -1,11 +1,13 @@
+import argparse
+import os
 import serial
 import struct
-import time
 import sys
 import threading
+import time
 from collections import deque
+from serial.tools import list_ports
 
-PORT = 'COM34'  # PORT ANPASSEN
 BAUD = 921600
 FILENAME = "handshake_auto.pcap"
 
@@ -14,6 +16,32 @@ networks_list = {}
 keep_running = True
 capture_mode = False
 scan_finished = False
+
+
+def resolve_port(explicit_port):
+    if explicit_port:
+        return explicit_port
+
+    env_port = os.environ.get("PORT")
+    if env_port:
+        return env_port
+
+    ports = list(list_ports.comports())
+    if not ports:
+        raise RuntimeError("No serial ports found. Pass --port or set PORT.")
+
+    if len(ports) == 1:
+        return ports[0].device
+
+    print("Available serial ports:")
+    for index, port in enumerate(ports):
+        description = port.description or "Unknown device"
+        print(f"  [{index}] {port.device} - {description}")
+
+    while True:
+        choice = input("Select port number: ").strip()
+        if choice.isdigit() and int(choice) < len(ports):
+            return ports[int(choice)].device
 
 def serial_reader(ser):
     global keep_running, capture_mode, scan_finished
@@ -56,8 +84,14 @@ def serial_reader(ser):
 
 def run():
     global keep_running, capture_mode, scan_finished
+    parser = argparse.ArgumentParser(description="Scan and capture packets from the ESP32 helper.")
+    parser.add_argument("--port", help="Serial port for the ESP32 (for example COM5 or /dev/ttyUSB0).")
+    parser.add_argument("--output", default=FILENAME, help="PCAP file to write.")
+    args = parser.parse_args()
+
     try:
-        ser = serial.Serial(PORT, BAUD, timeout=0.1)
+        port = resolve_port(args.port)
+        ser = serial.Serial(port, BAUD, timeout=0.1)
     except Exception as e:
         print(f"Fehler: COM-Port belegt oder falsch ({e})")
         return
@@ -69,7 +103,7 @@ def run():
     t.daemon = True
     t.start()
 
-    print("Scanne Netzwerke... Bitte warten...")
+    print(f"Scanne Netzwerke über {port}... Bitte warten...")
     ser.write(b"SCAN\n")
     
     while not scan_finished:
@@ -106,7 +140,7 @@ def run():
             print("Keine relevanten Pakete aufgezeichnet.")
             return
 
-        with open(FILENAME, "wb") as f:
+        with open(args.output, "wb") as f:
             f.write(struct.pack("<IHHIIII", 0xa1b2c3d4, 2, 4, 0, 0, 65535, 105))
             written = 0
             while packet_queue:
@@ -119,7 +153,7 @@ def run():
                 f.write(pkt)
                 written += 1
                 
-        print(f"Erfolgreich! {written} Pakete fehlerfrei in '{FILENAME}' gesichert.")
+        print(f"Erfolgreich! {written} Pakete fehlerfrei in '{args.output}' gesichert.")
 
 if __name__ == "__main__":
     run()
