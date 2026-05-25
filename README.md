@@ -158,7 +158,23 @@ VBAT ── R1 ──+── GPIO34
 <img width="800" height="500" alt="PCB_top" src="https://github.com/user-attachments/assets/f06ebb7f-a434-4ea0-8a82-d48e4f9d0af6" />
 <img width="800" height="400" alt="Case_snap_together" src="https://github.com/user-attachments/assets/849a8647-68e8-45dd-acf2-459302a06cb2" />
 
+## BOM
 
+| Reference | Qty | Value | Description | Price EUR | Pack Info | Link |
+|---|---|---|---|---|---|---|
+| C1 | 1 | 0.1uF | Unpolarized capacitor | 6.19 | 100 pcs | [Buy](https://amzn.eu/d/09888h7T) |
+| R1 R2 | 2 | 100k | Resistors | 8.19 | 50 pcs | [Buy](https://amzn.eu/d/08NQdVll) |
+| SW1 | 1 | EC11 Rotary Encoder | Rotary encoder with push button | 2.49 | 1 pc | [Buy](https://arduino-projekte.info/products/ec11-rotary-encoder?srsltid=AfmBOoql9EZHMg89JvVqM8fnVPwwvv0NLhGciYfBVo8YLQL4ypCRxuZV) |
+| U2 | 1 | SSD1306 0.91-inch OLED | I2C OLED display 128x32 | 1.35 | 1 pc | [Buy](https://de.aliexpress.com/item/1005011907100931.html) |
+| U3 | 1 | ESP32-DevKitC | ESP32 development board | 2.99 | 1 pc | [Buy](https://de.aliexpress.com/item/1005006140555903.html) |
+| U4 | 1 | DC-DC Buck Boost 600mA | Step-up/down power module | 0.99 | 1 pc | [Buy](https://de.aliexpress.com/item/1005008878997808.html) |
+| U5 | 1 | TP4056 Type-C Charger Module | Li-ion charging module | 0.99 | 1 pc | [Buy](https://de.aliexpress.com/item/1005011840928544.html) |
+| U6 | 1 | ESP8266 NodeMCU V3 | WiFi development board | 2.70 | 1 pc | [Buy](https://de.aliexpress.com/item/1005006889833004.html) |
+| Battery | 1 | 654060 Li-Po 2000mAh | Lithium polymer battery | 9.90 | 1 pc | [Buy](https://de.aliexpress.com/item/1005011549440731.html) |
+
+### Total Cost
+- Full pack prices: **35.79 EUR**
+- Actual project usage cost: **21.63 EUR**
 
 
 
