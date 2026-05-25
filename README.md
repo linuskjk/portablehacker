@@ -1,7 +1,8 @@
 # Portable Hacker
 
 Portable Hacker is a handheld device to test the security of WiFi networks and bluetooth.
-<img width="2250" height="3450" alt="portablehacker_zine_v2" src="https://github.com/user-attachments/assets/d89e4207-22be-45c8-999d-ab69f8de36cb" />
+<img width="1618" height="2480" alt="portablehacker_zine_v2" src="https://github.com/user-attachments/assets/c0403760-cb37-42a2-bdad-e7e31a170d8c" />
+
 
 ## The project is designed to be:
 - portable
