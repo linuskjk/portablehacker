@@ -38,7 +38,7 @@ Portable Hacker is a handheld device to test the security of WiFi networks and b
 1. Assemble the PCB
 2. Solder all components
 3. Connect the OLED display
-4. Connect the battery to the charger module and then to the voltage regulator. (B+/- to charger module and output of that to the regulator) it is not on the pcb on purpose as this saves up a lot of space and still works perfectly fine (even better, as bc of this the battery placement is more flexible.
+4. Connect the battery to the charger module. (B+/- to charger module and output of that to V+/GND pin) it is not on the pcb on purpose as this saves up a lot of space and still works perfectly fine (even better, as bc of this the battery placement is more flexible. Just click the charger module in the space on the bottom of the case. It fits perfectly and whithholds a lot of strenght.
 5. Upload the firmware by uploading v1.ino to the esp32 and the handshakeV2_esp8266.ino to the ESP8266 you can do both by using Arduino IDE
 6. Power on the device
 
