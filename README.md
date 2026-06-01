@@ -171,10 +171,11 @@ VBAT ── R1 ──+── GPIO34
 | U5 | 1 | TP4056 Type-C Charger Module | Li-ion charging module | 0.99 | 1 pc | [Buy](https://de.aliexpress.com/item/1005011840928544.html) |
 | U6 | 1 | ESP8266 NodeMCU V3 | WiFi development board | 2.70 | 1 pc | [Buy](https://de.aliexpress.com/item/1005006889833004.html) |
 | Battery | 1 | 654060 Li-Po 2000mAh | Lithium polymer battery | 9.90 | 1 pc | [Buy](https://de.aliexpress.com/item/1005011549440731.html) |
+| Charger Module | 1 | TP4057 | USB-C charging module | 3.83 | 1 pc | [Buy](https://de.aliexpress.com/item/1005010764961491.html) |
 
 ### Total Cost
-- Full pack prices: **35.79 EUR**
-- Actual project usage cost: **21.63 EUR**
+- Full pack prices: **39.62 EUR**
+- Actual project usage cost: **25.46 EUR**
 
 
 
